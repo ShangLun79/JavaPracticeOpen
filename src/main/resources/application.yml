@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: mini-banking-api
+
+  # H2 Database (開發用的內嵌資料庫)
+  datasource:
+    url: jdbc:h2:mem:bankingdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  # JPA 設定
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  # H2 Console (方便開發時查看資料庫)
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  # 暫時允許所有請求 (之後會用 SecurityConfig 取代)
+  security:
+    user:
+      name: admin
+      password: admin
+
+# Server 設定
+server:
+  port: 8080
+
+# JWT 設定
+jwt:
+  # Base64 編碼的密鑰（至少 256 bits / 32 bytes）
+  # 原始值: mySecretKeyForJwtTokenGenerationMustBeLongEnough123456
+  secret: bXlTZWNyZXRLZXlGb3JKd3RUb2tlbkdlbmVyYXRpb25NdXN0QmVMb25nRW5vdWdoMTIzNDU2
+  expiration: 86400000  # 24 小時 (毫秒)
